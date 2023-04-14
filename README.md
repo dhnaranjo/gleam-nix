@@ -3,9 +3,9 @@
 [![Build history](https://buildstats.info/github/chart/vic/gleam-nix?branch=main)](https://github.com/vic/gleam-nix/actions)
 
 [nix](https://nixos.org/) is a purely functional package manager with
-fully-cacheable, to-the-byte reproducible builds. 
+fully-cacheable, to-the-byte reproducible builds.
 
-This guide documents how people using the Nix package manager or 
+This guide documents how people using the Nix package manager or
 NixOS systems can easily build every version of Gleam with just
 a single command.
 
@@ -24,7 +24,7 @@ for more in depth instructions.
 
 ```shell
 # This will install gleam from latest commit on main branch.
-nix profile install github:vic/gleam-nix --override-input gleam github:gleam-lang/gleam/main
+nix profile install github:dhnaranjo/gleam-nix --override-input gleam github:gleam-lang/gleam/main
 gleam --help
 ```
 
@@ -35,7 +35,7 @@ the latest commit on `main` branch.
 
 ```shell
 # The latest commit from Gleam's main branch. (can be a commit hash, tag or branch name)
-nix shell github:vic/gleam-nix --override-input gleam github:gleam-lang/gleam/main -c gleam --help
+nix shell github:dhnaranjo/gleam-nix --override-input gleam github:gleam-lang/gleam/main -c gleam --help
 ```
 
 Gleam maintainers can also use this to try PR experimental features
@@ -44,7 +44,7 @@ comes from specifying the repository/branch name.
 
 ```shell
 # running gleam to try other people branches:
-nix shell github:vic/gleam-nix --override-input gleam github:<someone>/gleam/<cool-feature> -c gleam --help
+nix shell github:dhnaranjo/gleam-nix --override-input gleam github:<someone>/gleam/<cool-feature> -c gleam --help
 ```
 
 ## Developing Gleam with a Nix environment.
@@ -54,18 +54,18 @@ development environment in an instant, all you have to do is
 checkout the Gleam repo and run:
 
 ```shell
-nix develop github:vic/gleam-nix --override-input gleam path:$PWD # -c fish # you might use your preferred shell
+nix develop github:dhnaranjo/gleam-nix --override-input gleam path:$PWD # -c fish # you might use your preferred shell
 # open your editor and hack hack hack..
 cargo build # build dependencies are loaded in your shell
-# or 
-nix run github:vic/gleam-nix --override-input gleam path:$PWD -- --help # runs your local `gleam --help`
+# or
+nix run github:dhnaranjo/gleam-nix --override-input gleam path:$PWD -- --help # runs your local `gleam --help`
 ```
 
 ## flake.nix
 
 [Nix flakes] are the secret sauce for nix reproducible builds.
 Since all build dependencies get hashed, even the source code.
-Every external dependency such external repos (e.g. nixpkgs), 
+Every external dependency such external repos (e.g. nixpkgs),
 external utilities (e.g. cargo llvm make), and any Cargo.toml
 workspace dependency (read from `Cargo.nix`) gets hashed so that
 nix only builds what has actually changed.

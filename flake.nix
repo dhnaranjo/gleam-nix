@@ -36,7 +36,7 @@
         };
 
         rustPkgs = pkgs.rustBuilder.makePackageSet {
-          rustChannel = "1.60.0";
+          rustChannel = "1.68.2";
           packageFun = import ./Cargo.nix;
           workspaceSrc = gleam;
         };
